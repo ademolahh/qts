@@ -120,7 +120,7 @@ abstract contract AccessControlUpgradeable is Initializable, ContextUpgradeable,
     /**
      * @dev Returns the admin role that controls `role`. See {grantRole} and
      * {revokeRole}.
-     *
+     *_setRoleAdmin
      * To change a role's admin, use {_setRoleAdmin}.
      */
     function getRoleAdmin(bytes32 role) public view virtual returns (bytes32) {
