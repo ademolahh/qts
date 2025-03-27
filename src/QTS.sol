@@ -17,8 +17,13 @@ contract QTS is ERC20Upgradeable, PausableUpgradeable, AccessControlUpgradeable 
     bytes32 public constant BURNER_ROLE = keccak256("Qts.Burner");
 
     function initialize() external initializer {
+        __AccessControl_init();
         __Pausable_init();
         __ERC20_init(NAME, SYMBOL);
+        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        _grantRole(ADMIN_ROLE, msg.sender);
+        _setRoleAdmin(MINTER_ROLE, ADMIN_ROLE);
+        _setRoleAdmin(BURNER_ROLE, ADMIN_ROLE);
     }
 
     function mint(address _to, uint256 _amount) external whenNotPaused onlyRole(MINTER_ROLE) {
